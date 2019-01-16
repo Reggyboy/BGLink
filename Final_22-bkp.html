@@ -2,14 +2,13 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 <body>
   <style>
-  body{
+body{
 
-        background-image: linear-gradient(90deg,#44b1ff 37%,#0b74dd);
-  }
+      background-image: linear-gradient(90deg,#44b1ff 37%,#0b74dd);
+}
 #undertitle{
 
   text-align: center;
@@ -73,7 +72,6 @@ padding: 40px 0px 15px 0px;
 
   }
   .dropbtn {
-
     background-color: #3498DB;
     color: white;
     margin: 16px;
@@ -126,11 +124,11 @@ background-color:rgb(0, 0, 0, 0.0)!important;
 
 overflow: visible!important;
 box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.0)!important;
-line-height: 200%!important;
+line-height: 100%!important;
 z-index: 1!important;
 font-family:"Roboto"!important;
 font-weight: 200!important;
-color:white!important;
+color: white!important;
 
 text-align: center!important;
 border-radius: 5px 5px 5px 5px!important;
@@ -143,17 +141,12 @@ width: 166px!important;
 color: white!important;
 
 }
-.toleft{
-  align-self: center;
-}
   .dropdown-content {
     display: none;
-    float: left;
     position: absolute;
-
     background-color: rgb(112,128,144, 0.9);
     min-width: 400px;
-    overflow: auto;
+    overflow: visible;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     line-height: 200%;
     z-index: 1;
@@ -213,17 +206,17 @@ text-align: left;
         </div></div>
         <div class="dropdown">
           <button onclick="myFunction(this)" name="gmi" class="dropbtn">GMI</button>
-          <div id="gmi" class="dropdown-content toleft">
+          <div id="gmi" class="dropdown-content">
 
           </div></div>
           <div class="dropdown">
             <button onclick="myFunction(this)" name="msa" class="dropbtn">MSA</button>
-            <div id="msa" class="dropdown-content toleft">
+            <div id="msa" class="dropdown-content">
 
             </div></div>
             <div class="dropdown">
               <button onclick="myFunction(this)" name="crowcon" class="dropbtn">Crowcon</button>
-              <div id="crowcon" class="dropdown-content toleft">
+              <div id="crowcon" class="dropdown-content">
 
               </div></div>
 </div>
@@ -308,9 +301,9 @@ text-align: left;
   [62,	"Clip SGD, O2",	"P",	7,	0],
   [63,	"T4",	"P",	7,	0],
   [64,	"Gas Pro",	"P",	7,	0],
-  [65,	"Tetra 3",	"P",	7,	0],];
-  var gases = [[1,	34,	325,	0,	"Multimix 1","	15ppm H2S,50ppm CO, 50% CH4, 18% VOL O2."],[2,	34,	326,	0,	"Multimix 2","	25ppm H2S, 50ppm CO, 50%LEL CH4, 12% O2, Multimix"],
-  [3,	34,	327,	0,	"Multimix 3","	25ppm H2S, 100ppm CO, 50% LEL CH4, 18%O2, Nitrogen Balance"],
+  [65,	"Tetra 3",	"P",	7,	0]];
+  var gases = [[1,	34,	325,	0,	"Multimix","	15ppm H2S,50ppm CO, 50% CH4, 18% VOL O2."],[2,	34,	326,	0,	"Multimix","	25ppm H2S, 50ppm CO, 50%LEL CH4, 12% O2, Multimix"],
+  [3,	34,	327,	0,	"Multimix","	25ppm H2S, 100ppm CO, 50% LEL CH4, 18%O2, Nitrogen Balance"],
   [4,	34,	328,	0,	"Methane CH4","	50%LEL / 2,5%VOL CH4 in air"],
   [5,	12,	472,	0,	"Methane CH4","	15%VOL CH4 in N2"],
   [6,	12,	780,	0,	"Methane CH4","	100%VOL CH4 in N2"],
@@ -321,7 +314,7 @@ text-align: left;
   [11,	34,	785,	0,	"Nitrogen pure",	"99,999% N2"],
   [12,	34,	786,	0,	"CO in N2",	"50 ppm CO in N2"],
   [13,	34,	787,	0,	"H2S in N2",	"25 ppm H2S in N2"],
-  [14,	34,	788,	0,	"H2S in N2",	"50 ppm H2S in N2"],
+  [14,	34,	787,	0,	"H2S in N2",	"50 ppm H2S in N2"],
   [15,	34,	789,	0,	"Isobutylene",	"100ppm Isobutylene in air"],
   [16,	34,	790,	0,	"CO2",	"5%VOL CO2 in N2"],
   [17,	34,	791,	0,	"Oxygen 18,5%","	18,5% O2 in air"]];
@@ -420,7 +413,7 @@ text-align: left;
   [62,	11],
   [63,	1],
   [64,	1],
-  [65,	1],];
+  [65,	1]];
   var producers = [[0,"producers"],[1,	"riken"],[2,	"bw"],[3,	"rae"],[4,	"draeger"],[5,	"gmi"],[6,	"msa"],[7,	"crowcon"]];
   fillList();
   function fillList(){
@@ -457,7 +450,7 @@ text-align: left;
   var instr = [];
   function showlist (){
   instr = [];
-    document.getElementById("instrumentLIST2").innerHTML="<p>Instruments</p> <br>";
+    document.getElementById("instrumentLIST2").innerHTML="Instruments: <br>";
     instruments.forEach(calculateLIST);
 
   }
@@ -484,10 +477,9 @@ text-align: left;
     let div = document.createElement("div");
     div.classList += "dropdown-content";
     div.classList += " ragnar";
-    div.innerHTML = '<a type:="button" style="color:white;text-decoration:none;" class="button" href="https://193197-test.web.tornado-node.net/cart/?add-to-cart='+myOrder2+',">Consolidate gases</a>';
-if(instr.length>0){
+    div.innerHTML = '<a type:="button" class="button" href="https://193197-test.web.tornado-node.net/cart/?add-to-cart='+myOrder2+',">consolidate gases</a>';
+
     document.getElementById("instrumentLIST2").appendChild(div);
-  }
   }
 
 
@@ -505,8 +497,8 @@ if(instr.length>0){
   myOrder.push([gases[i][2],calcGas]);
   myOrder2.push((`${gases[i][2]}:${calcGas}`));
   let position = (myOrder.length-1);
-        let li = document.createElement("ul");
-      li.innerHTML =  gases[i][4] +" :  Calculated need: "+ calcGas +"<br>";
+        let li = document.createElement("li");
+      li.innerHTML =  gases[i][4] +"   Number of units: "+ calcGas +"<br>";
         li.id = gases[i][2];
         li.value = calcGas;
         document.getElementById("instrumentLIST2").appendChild(li);
@@ -522,12 +514,11 @@ if(instr.length>0){
                   var consumption = 14;
                 }
                 for (let i=0 ; i < relations.length; i++)  {
-                        if (relations[i][0]===(index+1)){
+                        if (relations[i][0]==(index+1)){
                           let  totalcon = (item[4]*consumption);
                             let newValue = parseInt(totalcon);
                             let value = parseInt(relations[i][1]);
-                            console.log(value-1);
-                          gases[value-1][3] += newValue;
+                          gases[relations[i][1]][3] += newValue;
                         }
                 }
         }
@@ -535,8 +526,8 @@ if(instr.length>0){
 
   function calculateLIST(item, index){
                 if (item[4]>0){
-                  let li = document.createElement("ul");
-                  li.innerHTML =  item[1] +" :   Number of units: "+ item[4] +"<br>";
+                  let li = document.createElement("li");
+                  li.innerHTML =  item[1] +":   Number of units: "+ item[4] +"<br>";
                   li.id = index;
                   document.getElementById("instrumentLIST2").appendChild(li);
                   instr.push( [li.innerHTML] );

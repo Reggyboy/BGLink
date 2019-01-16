@@ -138,13 +138,16 @@ border-color: rgb(255, 255, 255, 0.7)!important;
 font-size: 16px!important;
 border-style: solid!important;
 border-width: 2px!important;
-margin: 10px!important;
+margin: 79px!important;
 width: 166px!important;
-color: white!important;
+
 
 }
-.toleft{
-  align-self: center;
+/* CSS specifically for mobile screens -----------------------------------*/
+@media only screen and (max-width: 1600px) {
+  .toleft{
+  right: 30px;
+  }
 }
   .dropdown-content {
     display: none;
@@ -181,6 +184,37 @@ text-align: left;
   }
 
   .show {display: block;}
+  .tooltip {
+    position: relative;
+
+  }
+
+  .tooltip .tooltiptext {
+    font-family:"Roboto"!important;
+    font-weight: 200!important;
+    color:white!important;
+    background-color:rgb(0, 0, 0, 0.9);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    visibility: hidden;
+    text-align: center!important;
+    border-radius: 5px 5px 5px 5px!important;
+    border-color: rgb(255, 255, 255, 0.7)!important;
+    font-size: 16px!important;
+    border-style: solid!important;
+    border-width: 2px!important;
+    margin: 10px!important;
+    width: 166px!important;
+    padding: 15px 50px 15px 50px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
   </style>
 
 
@@ -324,7 +358,8 @@ text-align: left;
   [14,	34,	788,	0,	"H2S in N2",	"50 ppm H2S in N2"],
   [15,	34,	789,	0,	"Isobutylene",	"100ppm Isobutylene in air"],
   [16,	34,	790,	0,	"CO2",	"5%VOL CO2 in N2"],
-  [17,	34,	791,	0,	"Oxygen 18,5%","	18,5% O2 in air"]];
+  [17,	34,	791,	0,	"Oxygen 18,5%","	18,5% O2 in air"],
+  [18,	34,	1007,	0,	"On Request"," product (0)	Add a note on Order"]];
   var relations = [[1,	2],[2,2],[2,8],
   [2,	9],
   [2,	11],
@@ -360,10 +395,10 @@ text-align: left;
   [16,	12],
   [17,	2],
   [18,	7],
-  [19,	0],
+  [19,	18],
   [20,	14],
   [21,	12],
-  [22,	0],
+  [22,	18],
   [23,	3],
   [24,	3],
   [25,	3],
@@ -482,9 +517,9 @@ text-align: left;
     showGAS();
     localStorage.setItem("inst", instr);
     let div = document.createElement("div");
-    div.classList += "dropdown-content";
-    div.classList += " ragnar";
-    div.innerHTML = '<a type:="button" style="color:white;text-decoration:none;" class="button" href="https://193197-test.web.tornado-node.net/cart/?add-to-cart='+myOrder2+',">Consolidate gases</a>';
+    //div.classList += "dropdown-content";
+    //div.classList += " ragnar";
+    div.innerHTML = '<a type:="button" style="color:white;text-decoration:none;" class="dropdown-content show button ragnar" href="https://193197-test.web.tornado-node.net/cart/?add-to-cart='+myOrder2+',">Consolidate gases</a>';
 if(instr.length>0){
     document.getElementById("instrumentLIST2").appendChild(div);
   }
@@ -506,7 +541,8 @@ if(instr.length>0){
   myOrder2.push((`${gases[i][2]}:${calcGas}`));
   let position = (myOrder.length-1);
         let li = document.createElement("ul");
-      li.innerHTML =  gases[i][4] +" :  Calculated need: "+ calcGas +"<br>";
+        li.classList+= "tooltip";
+      li.innerHTML =  gases[i][4] +" :  Calculated need: "+ calcGas +"<br>"+` <span class="tooltiptext">${gases[i][5]}</span>`;
         li.id = gases[i][2];
         li.value = calcGas;
         document.getElementById("instrumentLIST2").appendChild(li);
@@ -536,7 +572,8 @@ if(instr.length>0){
   function calculateLIST(item, index){
                 if (item[4]>0){
                   let li = document.createElement("ul");
-                  li.innerHTML =  item[1] +" :   Number of units: "+ item[4] +"<br>";
+                  li.classList += "tooltip";
+                  li.innerHTML =  item[1] +" :   Number of units: "+ item[4] +"<br>"+` <span class="tooltiptext">${producers[item[3]][1]}</span>`;
                   li.id = index;
                   document.getElementById("instrumentLIST2").appendChild(li);
                   instr.push( [li.innerHTML] );
@@ -544,7 +581,7 @@ if(instr.length>0){
               else {return}
   }
 
-
+//<button  id="showC" onclick="showcalc();myFunction(this)">Calculate gases</button>
   </script>
 </body>
 </html>

@@ -42,6 +42,10 @@ text-align: center;
 padding: 0px 20px 0px 0px;
 
   }
+  .showcc{
+    text-align: center;
+    padding: 0px 20px 0px 0px;
+  }
 
   #divBtns{
 
@@ -72,6 +76,7 @@ padding: 40px 0px 15px 0px;
 
 
   }
+
   .dropbtn {
 
     background-color: #3498DB;
@@ -92,19 +97,46 @@ padding: 40px 0px 15px 0px;
 #producerDiv{
 text-align: center;
 
-
-
-
 }
-
-
-#instrumentLIST2{
+#instrumentLIST3{
+  display: none;
 color: white;
 font-family: "Roboto";
 font-weight: normal;
 font-size: 21px;
+width: 400px;
+float: left;
+margin: 10px;
+border-radius: 5px 5px 5px 5px;
+border-style: solid;
+border-width: 2px;
+border-color: rgb(255, 255, 255, 0.7);
+padding: 15px 10px;
+}
+#instrumentLIST3 p{
+color: white;
+font-family: "Roboto";
+font-weight: normal;
+font-size: 21px;
+padding-top: 5px;
 
+}
 
+#instrumentLIST2{
+display: none;
+color: white;
+font-family: "Roboto";
+font-weight: normal;
+font-size: 21px;
+width: 400px;
+float: left;
+
+margin: 10px;
+border-radius: 5px 5px 5px 5px;
+border-style: solid;
+border-width: 2px;
+border-color: rgb(255, 255, 255, 0.7);
+padding: 15px 10px;
 }
 #instrumentLIST2 p{
 color: white;
@@ -121,30 +153,13 @@ padding-top: 5px;
 .ragnar{
 
 display: none;
-position: absolute!important;
-background-color:rgb(0, 0, 0, 0.0)!important;
-
-overflow: visible!important;
-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.0)!important;
-line-height: 200%!important;
-z-index: 1!important;
-font-family:"Roboto"!important;
-font-weight: 200!important;
-color:white!important;
-
-text-align: center!important;
-border-radius: 5px 5px 5px 5px!important;
-border-color: rgb(255, 255, 255, 0.7)!important;
-font-size: 16px!important;
-border-style: solid!important;
-border-width: 2px!important;
-margin: 10px!important;
-width: 166px!important;
-color: white!important;
 
 }
-.toleft{
-  align-self: center;
+/* CSS specifically for mobile screens -----------------------------------*/
+@media only screen and (max-width: 1600px) {
+  .toleft{
+  right: 30px;
+  }
 }
   .dropdown-content {
     display: none;
@@ -179,13 +194,61 @@ text-align: left;
   .input_instruments{
     float: right;
   }
+  .instrument_header{
+    margin-bottom: 10px;
+  }
+  .instrument_header1{
+    max-width: 400px;
+    margin-bottom: 10px;
+  }
+  .input_instruments3{
+    float: right;
+
+  }
+  .input_instruments2{
+    float: left;
+
+  }
 
   .show {display: block;}
+  #instrumentLIST2 .vismeg{display: inline-block;}
+  .ikkevis{display: none}
+  .tooltip {
+    position: relative;
+
+  }
+
+  .tooltip .tooltiptext {
+    font-family:"Roboto"!important;
+    font-weight: 200!important;
+    color:white!important;
+    background-color:rgb(0, 0, 0, 0.9);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    visibility: hidden;
+    text-align: center!important;
+    border-radius: 5px 5px 5px 5px!important;
+    border-color: rgb(255, 255, 255, 0.7)!important;
+    font-size: 16px!important;
+    border-style: solid!important;
+    border-width: 2px!important;
+    margin: 10px!important;
+    width: 166px!important;
+    padding: 15px 50px 15px 50px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
   </style>
 
 
   <h2>CHOOSE GASES FOR DELIVERY</h2>
-  <p id="undertitle"> Calculate gases needed next 12 months for all your instruments</p>
+  <p id="undertitle"> Select instruments on board to calculate gases required for 12 months consumption. </p>
 
 <div id="producerDiv">
 
@@ -194,8 +257,10 @@ text-align: left;
     <div class="dropdown">
       <button onclick="myFunction(this)" name="riken" class="dropbtn">Riken Keiki</button>
       <div id="riken" class="dropdown-content">
+        <div class="instrument_header">
+<div class="input_instruments2">Instrument type:</div><div class="input_instruments3">Number on board:</div><br>
+      </div>    </div>
 
-      </div>
     </div><div class="dropdown">
       <button onclick="myFunction(this)" name="bw" class="dropbtn">BW</button>
       <div id="bw" class="dropdown-content">
@@ -239,8 +304,8 @@ text-align: left;
 </div>
 
         <div id="instrumentLIST2"></div>
-  <br><div id="instrumentLIST"></div>
-  <br><div style="display:visible" id="instrumentLIST3"></div>
+<div id="instrumentLIST"></div>
+<div  id="instrumentLIST3"></div>
 
 
   <script>
@@ -324,7 +389,8 @@ text-align: left;
   [14,	34,	788,	0,	"H2S in N2",	"50 ppm H2S in N2"],
   [15,	34,	789,	0,	"Isobutylene",	"100ppm Isobutylene in air"],
   [16,	34,	790,	0,	"CO2",	"5%VOL CO2 in N2"],
-  [17,	34,	791,	0,	"Oxygen 18,5%","	18,5% O2 in air"]];
+  [17,	34,	791,	0,	"Oxygen 18,5%","	18,5% O2 in air"],
+  [18,	34,	1007,	0,	"On Request"," product (0)	Add a note on Order"]];
   var relations = [[1,	2],[2,2],[2,8],
   [2,	9],
   [2,	11],
@@ -360,10 +426,10 @@ text-align: left;
   [16,	12],
   [17,	2],
   [18,	7],
-  [19,	0],
+  [19,	18],
   [20,	14],
   [21,	12],
-  [22,	0],
+  [22,	18],
   [23,	3],
   [24,	3],
   [25,	3],
@@ -424,6 +490,7 @@ text-align: left;
   var producers = [[0,"producers"],[1,	"riken"],[2,	"bw"],[3,	"rae"],[4,	"draeger"],[5,	"gmi"],[6,	"msa"],[7,	"crowcon"]];
   fillList();
   function fillList(){
+
       for (i = 0; i < instruments.length; i++) {
         let proI = producers[instruments[i][3]][1];
         let nowdiv = document.createElement("div");
@@ -457,7 +524,10 @@ text-align: left;
   var instr = [];
   function showlist (){
   instr = [];
-    document.getElementById("instrumentLIST2").innerHTML="<p>Instruments</p> <br>";
+    document.getElementById("instrumentLIST2").style = "display: inline-block;";
+    document.getElementById("instrumentLIST2").innerHTML=`    <div  class="instrument_header1">
+<div class="input_instruments2">Instrument type:</div><div class="input_instruments3">Number on board:</div><br>
+      </div>    </div>`;
     instruments.forEach(calculateLIST);
 
   }
@@ -468,7 +538,7 @@ text-align: left;
   function calculateInstrLIST(item, index){
                 if (item[4]>0){
                   let li = document.createElement("li");
-                  li.innerHTML =  item[1] +":   Number of units: "+ item[4] +"<br>";
+                  li.innerHTML =  item[1] +` Numbers on board: `+ item[4] +"</div><br>";
                   instr.push( [li.innerHTML] );
               }
               else {return}
@@ -477,16 +547,19 @@ text-align: left;
     deleteConsumption();
   instr = [];
     instruments.forEach(calculateInstrLIST);
-    document.getElementById("instrumentLIST2").innerHTML=" <p>Gases</p> <br>";
+        document.getElementById("instrumentLIST3").style = "display: inline-block;";
+    document.getElementById("instrumentLIST3").innerHTML=`    <div  class="instrument_header1">
+<div class="input_instruments2">Gas type:</div><div class="input_instruments3">Calculated need:</div><br>
+      </div>    </div>`;
     instruments.forEach(calculateGAS);
     showGAS();
     localStorage.setItem("inst", instr);
     let div = document.createElement("div");
-    div.classList += "dropdown-content";
-    div.classList += " ragnar";
-    div.innerHTML = '<a type:="button" style="color:white;text-decoration:none;" class="button" href="https://193197-test.web.tornado-node.net/cart/?add-to-cart='+myOrder2+',">Consolidate gases</a>';
+    //div.classList += "dropdown-content";
+    //div.classList += " ragnar";
+    div.innerHTML = '<div class="Consolidate" ><a type:="button" style="color:white;text-decoration:none;" class="dropdown-content button ragnar showcc" href="https://193197-test.web.tornado-node.net/cart/?add-to-cart='+myOrder2+',">Consolidate gases</a></div>';
 if(instr.length>0){
-    document.getElementById("instrumentLIST2").appendChild(div);
+    document.getElementById("instrumentLIST3").appendChild(div);
   }
   }
 
@@ -506,10 +579,11 @@ if(instr.length>0){
   myOrder2.push((`${gases[i][2]}:${calcGas}`));
   let position = (myOrder.length-1);
         let li = document.createElement("ul");
-      li.innerHTML =  gases[i][4] +" :  Calculated need: "+ calcGas +"<br>";
+        li.classList+= "tooltip";
+      li.innerHTML =  gases[i][4] +`<div class="input_instruments3">`+ calcGas +"</div><br>"+` <span class="tooltiptext">${gases[i][5]}</span>`;
         li.id = gases[i][2];
         li.value = calcGas;
-        document.getElementById("instrumentLIST2").appendChild(li);
+        document.getElementById("instrumentLIST3").appendChild(li);
       }
     }
   }
@@ -536,7 +610,8 @@ if(instr.length>0){
   function calculateLIST(item, index){
                 if (item[4]>0){
                   let li = document.createElement("ul");
-                  li.innerHTML =  item[1] +" :   Number of units: "+ item[4] +"<br>";
+                  li.classList += "tooltip";
+                  li.innerHTML =  item[1] +`<div class="input_instruments3">`+ item[4] +"</div><br>"+` <span class="tooltiptext">${producers[item[3]][1]}</span>`;
                   li.id = index;
                   document.getElementById("instrumentLIST2").appendChild(li);
                   instr.push( [li.innerHTML] );
